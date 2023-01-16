@@ -9,6 +9,8 @@ const override: React.CSSProperties = {
   display: "block",
   margin: "0 auto",
   borderColor: "#53FFAA",
+  position: "absolute",
+  top: "50%",
 };
 
 export default function Spinner({ isLoading, color }: SpinnerProps) {

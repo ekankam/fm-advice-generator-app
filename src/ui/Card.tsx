@@ -40,7 +40,7 @@ const Image = () => {
 export default function Card({ advice, id, onClick, isLoading }: Card) {
 
   return (
-    <article data-cy="advice-card" className='bg-dark-blue-500 px-12 flex flex-col text-center justify-center font-extrabold relative mx-2 min-h-[364px] h-full rounded-2xl md:mx-0 min-w-[343px] max-w-[540px]'>
+    <article data-cy="advice-card" className='bg-dark-blue-500 px-12 flex flex-col text-center items-center font-extrabold relative mx-2 min-h-[300px] h-full rounded-2xl md:mx-0 min-w-[343px] max-w-[540px]'>
       {isLoading ? <Spinner isLoading={isLoading} color="#53FFAA" /> : (
         <div data-cy="advice-card-content">
           <p className='pt-12 uppercase text-neon-green mb-6 tracking-widest text-[11px] md:text-[13px]'>Advice #{id}</p>
