@@ -7,7 +7,7 @@ import Spinner from './Spinner';
 
 type Card = {
   id: number;
-  onClick: React.MouseEventHandler<HTMLDivElement> | undefined;
+  onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
   advice: string;
   isLoading: boolean;
 }
@@ -40,17 +40,17 @@ const Image = () => {
 export default function Card({ advice, id, onClick, isLoading }: Card) {
 
   return (
-    <article className='bg-dark-blue-500 px-12 flex flex-col text-center justify-center font-extrabold relative mx-2 min-h-[364px] h-full rounded-2xl md:mx-0 min-w-[343px] max-w-[540px]'>
+    <article data-cy="advice-card" className='bg-dark-blue-500 px-12 flex flex-col text-center justify-center font-extrabold relative mx-2 min-h-[364px] h-full rounded-2xl md:mx-0 min-w-[343px] max-w-[540px]'>
       {isLoading ? <Spinner isLoading={isLoading} color="#53FFAA" /> : (
-        <div>
+        <div data-cy="advice-card-content">
           <p className='pt-12 uppercase text-neon-green mb-6 tracking-widest text-[11px] md:text-[13px]'>Advice #{id}</p>
           <p className='text-light-cyan leading-9 mb-10'>"{advice}"</p>
           <Image />
         </div>
       )}
-      <div className='absolute -bottom-7 left-1/2 -translate-x-2/4 w-16 h-16 rounded-full bg-neon-green flex items-center justify-center cursor-pointer hover:scale-100 hover:shadow-default hover:rotate-45 transition-all' onClick={onClick}>
+      <button type='button' data-cy="submit-button" className='absolute -bottom-7 left-1/2 -translate-x-2/4 w-16 h-16 rounded-full bg-neon-green flex items-center justify-center cursor-pointer hover:scale-100 hover:shadow-default hover:rotate-45 transition-all' onClick={onClick}>
         <img src={Dice} alt="Dice Icon" />
-      </div>
+      </button>
     </article>
   );
 }
