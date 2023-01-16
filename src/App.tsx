@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "./ui/Card";
+import { fetchData } from "./utils/fetcher";
 
 
 const url = 'https://api.adviceslip.com/advice';
@@ -22,24 +23,26 @@ const App = () => {
   const [data, setData] = useState<initialProps | any>(initialState);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchData = async () => {
-    setIsLoading(true)
+  const getRandomAdvice = async () => {
+    setIsLoading(true);
     try {
-      const result = await (await fetch(url)).json();
+      const result = await fetchData(url);
+
       setData(result);
       setIsLoading(false);
     } catch (error) {
-      throw new Error('Oops... Something went wrong!');
+      console.error(error);
     }
+
   }
 
   useEffect(() => {
-    fetchData();
+    getRandomAdvice()
   }, [])
 
   return (
     <main className="bg-dark-blue-900 min-h-screen flex items-center justify-center">
-      <Card adviceNumber={data.slip.id} text={data.slip.advice} onClick={fetchData} isLoading={isLoading} />
+      <Card id={data.slip?.id} advice={data.slip?.advice} onClick={getRandomAdvice} isLoading={isLoading} />
     </main>
   )
 }

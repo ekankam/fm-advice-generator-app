@@ -6,9 +6,9 @@ import Dice from '/images/icon-dice.svg';
 import Spinner from './Spinner';
 
 type Card = {
-  adviceNumber: number;
+  id: number;
   onClick: React.MouseEventHandler<HTMLDivElement> | undefined;
-  text: string;
+  advice: string;
   isLoading: boolean;
 }
 
@@ -37,14 +37,14 @@ const Image = () => {
   )
 }
 
-export default function Card({ adviceNumber, onClick, text, isLoading }: Card) {
+export default function Card({ advice, id, onClick, isLoading }: Card) {
 
   return (
     <article className='bg-dark-blue-500 px-12 flex flex-col text-center justify-center font-extrabold relative mx-2 min-h-[364px] h-full rounded-2xl md:mx-0 min-w-[343px] max-w-[540px]'>
       {isLoading ? <Spinner isLoading={isLoading} color="#53FFAA" /> : (
         <div>
-          <p className='pt-12 uppercase text-neon-green mb-6 tracking-widest text-[11px] md:text-[13px]'>Advice #{adviceNumber}</p>
-          <p className='text-light-cyan leading-9 mb-10'>"{text}"</p>
+          <p className='pt-12 uppercase text-neon-green mb-6 tracking-widest text-[11px] md:text-[13px]'>Advice #{id}</p>
+          <p className='text-light-cyan leading-9 mb-10'>"{advice}"</p>
           <Image />
         </div>
       )}
